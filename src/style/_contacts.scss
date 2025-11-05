@@ -1,0 +1,59 @@
+/* ============================
+   CONTACTS — Margo Look
+   ============================ */
+
+.contacts {
+  background: #F9F7F7;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  color: #302D30;
+
+  @media (min-width: 768px) {
+    padding: 5rem 2rem;
+  }
+
+  &__title {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.8rem, 2.5vw, 2.3rem);
+    font-weight: 600;
+    color: #0F4037;
+    margin-bottom: 2rem;
+  }
+
+  &__map {
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: inherit;
+    }
+  }
+
+  &__info {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.8;
+
+    a {
+      color: #0F4037;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #D4AF37;
+      }
+    }
+
+    p {
+      margin-bottom: 0.6rem;
+    }
+  }
+}

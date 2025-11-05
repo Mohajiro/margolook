@@ -1,0 +1,136 @@
+/* ============================
+   HEADER — Margo Look
+   ============================ */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: #fff;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+  font-family: "Playfair Display", serif;
+
+  &_icon {
+    color: #0F4037; /* emerald */
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+  }
+
+  .headnav {
+    position: relative;
+
+    &_list {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    &_link {
+      color: #302D30;
+      text-decoration: none;
+      font-family: "Montserrat", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      position: relative;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #0F4037;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 0%;
+        height: 1px;
+        background: #D4AF37;
+        transition: width 0.3s ease;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+
+  /* ===== Бургер ===== */
+  .burger {
+    width: 26px;
+    height: 20px;
+    position: relative;
+    display: none;
+    cursor: pointer;
+
+    span,
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #302D30;
+      transition: all 0.3s ease;
+    }
+
+    span { top: 9px; }
+    &::before { top: 0; }
+    &::after { bottom: 0; }
+
+    &.active {
+      span { opacity: 0; }
+      &::before { transform: rotate(45deg); top: 9px; }
+      &::after { transform: rotate(-45deg); bottom: 9px; }
+    }
+  }
+
+  /* ===== Мобильная адаптация ===== */
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    .headnav_list {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #fff;
+      flex-direction: column;
+      width: 200px;
+      padding: 1rem 0;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 0 0 0 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transform: translateY(-20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+
+      li { opacity: 0; transform: translateY(5px); transition: all 0.3s ease; }
+
+      &.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+
+        li {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+
+    .burger {
+      display: block;
+    }
+  }
+}

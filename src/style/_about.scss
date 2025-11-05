@@ -1,0 +1,99 @@
+/* ============================
+   ABOUT — Margo Look
+   ============================ */
+
+.about {
+  background: #f9f7f7;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+
+  @media (min-width: 768px) {
+    padding: 5rem 2rem;
+  }
+
+  &__title {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+    font-weight: 600;
+    color: #0F4037;
+    margin-bottom: 2rem;
+  }
+
+  &__image {
+    max-width: 450px;
+    margin: 0 auto 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: inherit;
+    }
+  }
+
+  &__text {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    color: #302D30;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  &__btn {
+    display: inline-block;
+    border: 1px solid #D4AF37;
+    color: #0F4037;
+    background: transparent;
+    border-radius: 30px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-bottom: 3rem;
+
+    &:hover {
+      background: #D4AF37;
+      color: #fff;
+    }
+  }
+
+  &__services {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  &__service {
+    background: #fff;
+    border: 2px solid #D4AF37;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    width: 130px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+    }
+
+    .about__icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 0.6rem;
+    }
+
+    .about__label {
+      display: block;
+      font-size: 0.95rem;
+      color: #0F4037;
+      font-weight: 500;
+    }
+  }
+}
