@@ -1,1 +1,21 @@
- $myFont: "Libre Caslon Display", serif;
+// =========================
+// VARIABLES — Margo Look
+// =========================
+
+// 🎨 Colors
+$color-bg: #F4F2F2;
+$color-dark: #302D30;
+$color-gold: #D4AF37;
+$color-emerald: #0F4037;
+$color-white: #FFFFFF;
+$color-soft-rose: #D8C6C3;
+
+// 🧱 Fonts
+$font-title: 'Montserrat', sans-serif;
+$font-text: 'Nunito', sans-serif;
+
+// 🖥 Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1200px;

@@ -1,41 +1,112 @@
-/* ============================
-   FOOTER — Margo Look
-   ============================ */
+@import 'variables';
 
 .footer {
-  background: #0F4037; // emerald
-  color: #F4F2F2;      // light grey/whiteish
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #0f4037; // глубокий изумруд
+  color: #fff;
+  padding: 4rem 1rem 2rem;
   text-align: center;
-  padding: 2rem 1rem;
-  font-family: "Montserrat", sans-serif;
+  font-family: $font-text;
+  position: relative;
+  overflow: hidden;
+
+  &__inner {
+    width: min(100% - 2rem, 1100px);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+  }
+
+  &__logo {
+    font-family: $font-title;
+    font-weight: 800;
+    font-size: 1.8rem;
+    letter-spacing: 0.06em;
+    color: $color-gold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: lighten($color-gold, 10%);
+    }
+  }
+
+  &__slogan {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 0.3rem;
+    letter-spacing: 0.04em;
+  }
 
   &__social {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    gap: 1.2rem;
 
-    a {
-      display: inline-block;
-      width: 34px;
-      height: 34px;
-      transition: transform 0.3s ease;
+    .footer__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
 
       &:hover {
-        transform: scale(1.1);
+        background: $color-gold;
+        transform: translateY(-4px);
       }
 
       img {
-        width: 100%;
-        height: auto;
-        filter: invert(100%); /* если иконки чёрные — превращает в белые */
+        width: 20px;
+        height: 20px;
+        filter: invert(100%);
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+
+    a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $color-gold;
       }
     }
   }
 
   &__copy {
-    font-size: 0.875rem;
-    color: #D5CDCB;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1rem;
     letter-spacing: 0.02em;
+  }
+
+  /* мягкое свечение */
+  &::after {
+    content: "";
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba($color-gold, 0.15) 0%, transparent 70%);
+    transform: translateX(-50%);
+    filter: blur(120px);
+    pointer-events: none;
   }
 }

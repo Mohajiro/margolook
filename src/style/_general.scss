@@ -1,54 +1,36 @@
-/* =========================
-   Margo Look — Base Reset
-   ========================= */
+@import 'variables';
 
-/* 1) Бокс-модель и базовые настройки */
 html {
   box-sizing: border-box;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  text-rendering: optimizeLegibility;
-  font-kerning: normal;
   scroll-behavior: smooth;
 }
 
-*, *::before, *::after { box-sizing: inherit; }
-
-/* 2) Обнуление отступов по умолчанию */
-* { margin: 0; padding: 0; }
-
-/* 3) Переменные бренда */
-$rose:      #D8C6C3;
-$gray-100:  #F4F2F2;
-$gray-200:  #E9E6E6;
-$gray-300:  #D5CDCB; // light gray
-$gray-900:  #302D30; // dark gray
-$emerald:   #0F4037;
-$gold:      #D4AF37;
-$white:     #ffffff;
-$black:     #111111;
-
-/* 4) Базовая типографика */
-:root {
-  --font-serif: "Libre Caslon Display", , Georgia, serif;
-  color-scheme: light;
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  min-height: 100svh;
-  font-family: var(--font-sans);
-  line-height: 1.5;
-  background: $gray-100;
-  color: $gray-900;
+  min-height: 100vh;
+  background: $color-bg;
+  color: $color-dark;
+  font-family: $font-text;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
-  font-size: 1rem;
-  @media (min-width: 640px) { font-size: 1.125rem; }
-  @media (min-width: 1024px) { font-size: 1.25rem; }  
   width: min(100% - 2rem, 1200px);
   margin-inline: auto;
-}
+  font-size: 1rem;
 
+  @media (min-width: $breakpoint-sm) {
+    font-size: 1.125rem;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    font-size: 1.25rem;
+  }
+}

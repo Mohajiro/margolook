@@ -1,49 +1,29 @@
 @charset "UTF-8";
-/* =========================
-   Margo Look — Base Reset
-   ========================= */
-/* 1) Бокс-модель и базовые настройки */
 html {
   box-sizing: border-box;
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-       text-size-adjust: 100%;
-  text-rendering: optimizeLegibility;
-  font-kerning: normal;
   scroll-behavior: smooth;
 }
 
 *, *::before, *::after {
   box-sizing: inherit;
-}
-
-/* 2) Обнуление отступов по умолчанию */
-* {
   margin: 0;
   padding: 0;
 }
 
-/* 3) Переменные бренда */
-/* 4) Базовая типографика */
-:root {
-  --font-serif: "Libre Caslon Display", , Georgia, serif;
-  color-scheme: light;
-}
-
 body {
-  min-height: 100svh;
-  font-family: var(--font-sans);
-  line-height: 1.5;
+  min-height: 100vh;
   background: #F4F2F2;
   color: #302D30;
+  font-family: "Nunito", sans-serif;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
-  font-size: 1rem;
   width: min(100% - 2rem, 1200px);
   margin-inline: auto;
+  font-size: 1rem;
 }
 @media (min-width: 640px) {
   .container {
@@ -56,74 +36,111 @@ body {
   }
 }
 
-/* ============================
-   HEADER — Margo Look
-   ============================ */
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background: #fff;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #FFFFFF;
   border-bottom: 1px solid rgba(212, 175, 55, 0.15);
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: all 0.3s ease;
-  font-family: "Playfair Display", serif;
-  /* ===== Бургер ===== */
-  /* ===== Мобильная адаптация ===== */
 }
-.header_icon {
-  color: #0F4037; /* emerald */
-  font-size: 1.2rem;
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: 0.05em;
-}
-.header .headnav {
-  position: relative;
-}
-.header .headnav_list {
+
+/* ===== ВНУТРЕННИЙ КОНТЕЙНЕР ===== */
+.header__inner {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+/* ===== ЛОГО ===== */
+.header_icon {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+.header_icon a {
+  color: #0F4037;
+  text-decoration: none;
+}
+
+/* ===== НАВИГАЦИЯ ===== */
+.headnav {
+  display: flex;
+  align-items: center;
+}
+
+.headnav_list {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
   list-style: none;
 }
-.header .headnav_link {
+
+/* ===== ОБЩИЙ СТИЛЬ ССЫЛОК ===== */
+.headnav_link {
+  position: relative;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
   color: #302D30;
   text-decoration: none;
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.95rem;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  position: relative;
   transition: color 0.3s ease;
+  /* Золотая линия при ховере */
 }
-.header .headnav_link:hover {
-  color: #0F4037;
-}
-.header .headnav_link::after {
+.headnav_link::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: -3px;
   width: 0%;
-  height: 1px;
+  height: 2px;
   background: #D4AF37;
   transition: width 0.3s ease;
 }
-.header .headnav_link:hover::after {
+.headnav_link:hover {
+  color: #0F4037;
+}
+.headnav_link:hover::after {
   width: 100%;
 }
-.header .burger {
-  width: 26px;
-  height: 20px;
-  position: relative;
+
+/* ===== КНОПКА "PRENDRE RDV" ===== */
+.headnav_item:first-child .headnav_link {
+  background: #D4AF37;
+  color: #FFFFFF;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 0; /* без скруглений */
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+  transition: all 0.3s ease;
+}
+.headnav_item:first-child .headnav_link::after {
+  display: none; /* убираем золотую линию */
+}
+.headnav_item:first-child .headnav_link:hover {
+  background: #0F4037;
+  box-shadow: 0 6px 14px rgba(15, 64, 55, 0.3);
+}
+
+/* ===== БУРГЕР ===== */
+.burger {
   display: none;
+  width: 24px;
+  height: 18px;
+  position: relative;
   cursor: pointer;
 }
-.header .burger span, .header .burger::before, .header .burger::after {
+.burger span, .burger::before, .burger::after {
   content: "";
   position: absolute;
   left: 0;
@@ -132,213 +149,273 @@ body {
   background: #302D30;
   transition: all 0.3s ease;
 }
-.header .burger span {
-  top: 9px;
+.burger span {
+  top: 8px;
 }
-.header .burger::before {
+.burger::before {
   top: 0;
 }
-.header .burger::after {
+.burger::after {
   bottom: 0;
 }
-.header .burger.active span {
+.burger.active span {
   opacity: 0;
 }
-.header .burger.active::before {
+.burger.active::before {
   transform: rotate(45deg);
-  top: 9px;
+  top: 8px;
 }
-.header .burger.active::after {
+.burger.active::after {
   transform: rotate(-45deg);
-  bottom: 9px;
+  bottom: 8px;
 }
+
+/* ===== АДАПТИВ ===== */
 @media (max-width: 768px) {
-  .header {
-    padding: 1rem;
+  .burger {
+    display: block;
   }
-  .header .headnav_list {
+  .headnav_list {
     position: absolute;
     top: 100%;
     right: 0;
-    background: #fff;
+    background: #FFFFFF;
     flex-direction: column;
     width: 200px;
     padding: 1rem 0;
     border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 0 0 0 10px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-    transform: translateY(-20px);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease;
+    display: none;
   }
-  .header .headnav_list li {
-    opacity: 0;
-    transform: translateY(5px);
-    transition: all 0.3s ease;
+  .headnav_list.open {
+    display: flex;
   }
-  .header .headnav_list.open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .header .headnav_list.open li {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .header .burger {
-    display: block;
+  .headnav_item:first-child .headnav_link {
+    width: 100%;
+    text-align: center;
+    border-radius: 0;
   }
 }
-
-/* ============================
-   HERO — Margo Look
-   ============================ */
 .hero {
-  background-color: #f4f2f2;
-  padding: 3rem 1rem;
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: linear-gradient(135deg, #f4f2f2 0%, #ebe9e8 100%);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 2rem;
+  /* ====== ЛЕВАЯ ЧАСТЬ — СЛАЙДЕР ====== */
+  /* ====== ПРАВАЯ ЧАСТЬ — КОНТЕНТ ====== */
 }
 @media (min-width: 768px) {
   .hero {
-    padding: 5rem 2rem;
+    flex-direction: row;
+    min-height: 80vh;
   }
 }
-.hero__image {
-  width: 100%;
-  max-width: 500px;
-  border-radius: 8px;
+.hero__slider {
+  position: relative;
+  flex: 1;
+  height: 50vh;
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
-.hero__image img {
+@media (min-width: 768px) {
+  .hero__slider {
+    height: auto;
+    min-height: 80vh;
+  }
+}
+.hero__slider img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  display: block;
-  border-radius: inherit;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease, transform 6s ease;
+  transform: scale(1.05);
+}
+.hero__slider img.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
 }
 .hero__content {
-  max-width: 650px;
-  background: #D8C6C3; /* soft rose */
-  border-radius: 12px;
-  padding: 2rem 1.5rem 2.5rem;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  padding: 4rem 0;
+  /* Контент по контейнеру */
+}
+.hero__content-inner {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+  padding: 0 2rem;
+}
+@media (max-width: 768px) {
+  .hero__content-inner {
+    text-align: center;
+  }
 }
 .hero__title {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
-  font-weight: 600;
-  color: #0F4037; /* emerald */
-  margin-bottom: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 2.5vw + 1rem, 3rem);
+  color: #0F4037;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 .hero__text {
-  font-family: "Montserrat", sans-serif;
-  color: #302D30; /* dark gray */
-  font-size: 1rem;
-  line-height: 1.7;
-  margin-bottom: 2rem;
+  font-family: "Nunito", sans-serif;
+  color: #302D30;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 520px;
 }
 .hero__btn {
   display: inline-block;
-  background: #D4AF37; /* gold */
-  color: #fff;
+  background: #D4AF37;
+  color: #FFFFFF;
   font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  padding: 0.75rem 1.8rem;
-  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 1rem 2.2rem;
+  border-radius: 0;
   text-decoration: none;
-  box-shadow: 0 8px 16px rgba(212, 175, 55, 0.3);
+  text-transform: uppercase;
+  box-shadow: 0 8px 16px rgba(212, 175, 55, 0.25);
   transition: all 0.3s ease;
 }
 .hero__btn:hover {
   background: #0F4037;
-  box-shadow: 0 10px 20px rgba(15, 64, 55, 0.3);
+  box-shadow: 0 10px 20px rgba(15, 64, 55, 0.25);
+  transform: translateY(-2px);
 }
 
-/* ============================
-   ABOUT — Margo Look
-   ============================ */
 .about {
-  background: #f9f7f7;
-  padding: 3rem 1.5rem;
+  background: linear-gradient(135deg, #f9f7f7 0%, #f1efef 100%);
+  overflow: hidden;
+  font-family: "Nunito", sans-serif;
+  padding: 5rem 0;
+  /* ==== ЛЕВАЯ ЧАСТЬ — ТЕКСТ ==== */
+  /* ==== ПРАВАЯ ЧАСТЬ — ИЗОБРАЖЕНИЕ ==== */
+  /* ==== КАРТОЧКИ УСЛУГ ==== */
+}
+.about__inner {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 3rem;
   text-align: center;
-  font-family: "Montserrat", sans-serif;
 }
 @media (min-width: 768px) {
-  .about {
-    padding: 5rem 2rem;
+  .about__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    gap: 5rem;
   }
 }
+.about__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .about__title {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.8rem, 2.5vw, 2.2rem);
-  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 2.5vw + 1rem, 2.6rem);
   color: #0F4037;
-  margin-bottom: 2rem;
-}
-.about__image {
-  max-width: 450px;
-  margin: 0 auto 2rem;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-}
-.about__image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: inherit;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 .about__text {
-  max-width: 600px;
-  margin: 0 auto 2rem;
   color: #302D30;
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  max-width: 600px;
 }
 .about__btn {
   display: inline-block;
-  border: 1px solid #D4AF37;
-  color: #0F4037;
-  background: transparent;
-  border-radius: 30px;
-  padding: 0.6rem 1.5rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  transition: all 0.3s ease;
+  background: #D4AF37;
+  color: #FFFFFF;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 1rem 2rem;
+  border-radius: 0;
+  text-transform: uppercase;
   text-decoration: none;
+  box-shadow: 0 8px 16px rgba(212, 175, 55, 0.25);
+  transition: all 0.3s ease;
   margin-bottom: 3rem;
 }
 .about__btn:hover {
-  background: #D4AF37;
-  color: #fff;
+  background: #0F4037;
+  box-shadow: 0 10px 20px rgba(15, 64, 55, 0.25);
+  transform: translateY(-2px);
+}
+.about__image {
+  flex: 1;
+  position: relative;
+  max-width: 600px;
+  overflow: hidden;
+  /* Добавим мягкое свечение для глубины */
+}
+.about__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.8s ease;
+  transform: scale(1.1);
+}
+.about__image:hover img {
+  transform: scale(1.15);
+}
+.about__image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.15), transparent 70%);
+  pointer-events: none;
 }
 .about__services {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.2rem;
   flex-wrap: wrap;
 }
+@media (max-width: 768px) {
+  .about__services {
+    justify-content: center;
+  }
+}
 .about__service {
   background: #fff;
-  border: 2px solid #D4AF37;
-  border-radius: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
   padding: 1rem 1.5rem;
   width: 130px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 .about__service:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.25);
 }
 .about__service .about__icon {
   width: 40px;
@@ -349,218 +426,493 @@ body {
   display: block;
   font-size: 0.95rem;
   color: #0F4037;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.03em;
 }
 
-/* ============================
-   SERVICES — Margo Look
-   ============================ */
 .services {
-  background: #fff;
-  padding: 3rem 1.5rem;
+  position: relative;
+  background: linear-gradient(135deg, #fefefe 0%, #f5f5f5 100%);
+  border-top: 2px solid rgba(15, 64, 55, 0.15);
+  border-bottom: 2px solid rgba(15, 64, 55, 0.15);
+  padding: 5rem 0;
   text-align: center;
-  font-family: "Montserrat", sans-serif;
-  border-top: 2px solid #0F4037; /* emerald border */
-  border-bottom: 2px solid #0F4037;
+  font-family: "Nunito", sans-serif;
+  /* ===== GRID ===== */
+  /* ===== CARD ===== */
 }
-@media (min-width: 768px) {
-  .services {
-    padding: 5rem 2rem;
-  }
+.services__inner {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
 }
 .services__title {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.8rem, 2.5vw, 2.3rem);
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(1.8rem, 2.5vw + 1rem, 2.4rem);
   color: #0F4037;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
 }
-.services__image {
-  max-width: 450px;
-  margin: 0 auto 2rem;
-  border-radius: 8px;
+.services__text {
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  color: #302D30;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.services .service-card {
+  background: #fff;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
-.services__image img {
+.services .service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+}
+.services .service-card__image {
   width: 100%;
-  height: auto;
-  display: block;
-  border-radius: inherit;
+  height: 220px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.services__text {
-  max-width: 600px;
-  margin: 0 auto 2rem;
+.services .service-card__content {
+  padding: 1.5rem 1.8rem 2rem;
+  flex-grow: 1;
+}
+.services .service-card__title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  color: #0F4037;
+  margin-bottom: 0.5rem;
+}
+.services .service-card__desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: #302D30;
-  font-size: 1rem;
-  line-height: 1.7;
 }
 .services__btn {
   display: inline-block;
-  background: #D4AF37; /* gold */
-  color: #fff;
+  background: #D4AF37;
+  color: #FFFFFF;
   font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  padding: 0.75rem 1.8rem;
-  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 1rem 2.2rem;
+  border-radius: 0;
   text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 0 8px 16px rgba(212, 175, 55, 0.3);
   transition: all 0.3s ease;
-  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.3);
 }
 .services__btn:hover {
   background: #0F4037;
   box-shadow: 0 10px 20px rgba(15, 64, 55, 0.25);
+  transform: translateY(-2px);
 }
 
-/* ============================
-   GALLERY — Margo Look
-   ============================ */
 .gallery {
-  background: #F4F2F2;
-  padding: 3rem 1.5rem;
-  text-align: center;
-  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  background: linear-gradient(135deg, #f4f2f2 0%, #ebe9e8 100%);
+  padding: 5rem 0;
+  font-family: "Nunito", sans-serif;
+  /* ==== SLIDER ==== */
+  /* стрелки */
+  /* точки */
 }
-@media (min-width: 768px) {
-  .gallery {
-    padding: 5rem 2rem;
+.gallery__inner {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+}
+.gallery__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 768px) {
+  .gallery__head {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
   }
 }
 .gallery__title {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.8rem, 2.5vw, 2.3rem);
-  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.6rem, 2.2vw + 1rem, 2.4rem);
   color: #0F4037;
-  margin-bottom: 2rem;
 }
-.gallery__image {
-  max-width: 450px;
-  margin: 0 auto 2rem;
-  border-radius: 8px;
+.gallery__cta {
+  display: inline-block;
+  background: #D4AF37;
+  color: #FFFFFF;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.8rem 1.4rem;
+  text-decoration: none;
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+.gallery__cta:hover {
+  background: #0F4037;
+  transform: translateY(-2px);
+}
+.gallery__slider {
+  position: relative;
+  margin-top: 1rem;
+}
+.gallery__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 80%;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 0.5rem 0.25rem 1rem;
+  -webkit-overflow-scrolling: touch;
+}
+@media (min-width: 520px) {
+  .gallery__track {
+    grid-auto-columns: 50%;
+  }
+}
+@media (min-width: 768px) {
+  .gallery__track {
+    grid-auto-columns: 33.333%;
+  }
+}
+@media (min-width: 1024px) {
+  .gallery__track {
+    grid-auto-columns: 25%;
+  }
+}
+.gallery__slide {
+  position: relative;
+  scroll-snap-align: start;
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  aspect-ratio: 4/5; /* стабильно красиво смотрится для hair */
+  background: #ddd;
+  /* тонкая золотая линия на ховер */
 }
-.gallery__image img {
+.gallery__slide img {
   width: 100%;
-  height: auto;
-  display: block;
-  border-radius: inherit;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  transition: transform 0.4s ease;
+  transform: scale(1.04);
+  transition: transform 0.5s ease;
+  display: block;
 }
-.gallery__image:hover img {
-  transform: scale(1.05);
+.gallery__slide:hover img {
+  transform: scale(1.1);
+}
+.gallery__slide::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #D4AF37;
+  transition: width 0.3s ease;
+}
+.gallery__slide:hover::after {
+  width: 100%;
+}
+.gallery__nav {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.gallery__nav:hover {
+  background: #D4AF37;
+  color: #fff;
+}
+.gallery__nav--prev {
+  left: -4px;
+}
+.gallery__nav--next {
+  right: -4px;
+}
+@media (max-width: 768px) {
+  .gallery__nav--prev {
+    left: 6px;
+  }
+  .gallery__nav--next {
+    right: 6px;
+  }
+}
+.gallery__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.gallery__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(15, 64, 55, 0.25);
+  transition: transform 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+}
+.gallery__dot.is-active {
+  background: #0F4037;
+  transform: scale(1.1);
+}
+.gallery__footer {
+  text-align: center;
+  margin-top: 1.25rem;
 }
 .gallery__btn {
   display: inline-block;
-  background: #D4AF37; /* gold */
-  color: #fff;
+  background: #D4AF37;
+  color: #FFFFFF;
   font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  padding: 0.75rem 1.8rem;
-  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 1rem 2rem;
+  border-radius: 0;
   text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 0 8px 16px rgba(212, 175, 55, 0.25);
   transition: all 0.3s ease;
-  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.3);
 }
 .gallery__btn:hover {
   background: #0F4037;
-  box-shadow: 0 10px 20px rgba(15, 64, 55, 0.25);
+  transform: translateY(-2px);
 }
 
-/* ============================
-   CONTACTS — Margo Look
-   ============================ */
 .contacts {
-  background: #F9F7F7;
-  padding: 3rem 1.5rem;
-  text-align: center;
-  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(135deg, #f9f7f7 0%, #f3f1f1 100%);
+  padding: 5rem 0;
+  font-family: "Nunito", sans-serif;
   color: #302D30;
+  /* ====== Левая колонка (контакты) ====== */
+  /* ====== Правая колонка (карта) ====== */
+}
+.contacts__inner {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  text-align: center;
 }
 @media (min-width: 768px) {
-  .contacts {
-    padding: 5rem 2rem;
+  .contacts__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    gap: 3rem;
   }
 }
+.contacts__left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .contacts__title {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.8rem, 2.5vw, 2.3rem);
-  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 2.5vw + 1rem, 2.4rem);
   color: #0F4037;
-  margin-bottom: 2rem;
-}
-.contacts__map {
-  max-width: 500px;
-  margin: 0 auto 2rem;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-}
-.contacts__map img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: inherit;
+  margin-bottom: 1.5rem;
 }
 .contacts__info {
-  max-width: 600px;
-  margin: 0 auto;
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.8;
+  margin-bottom: 2rem;
+}
+.contacts__info p {
+  margin-bottom: 0.4rem;
 }
 .contacts__info a {
   color: #0F4037;
   text-decoration: none;
+  position: relative;
   transition: color 0.3s ease;
+}
+.contacts__info a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #D4AF37;
+  transition: width 0.3s ease;
 }
 .contacts__info a:hover {
   color: #D4AF37;
 }
-.contacts__info p {
-  margin-bottom: 0.6rem;
+.contacts__info a:hover::after {
+  width: 100%;
+}
+.contacts__btn {
+  display: inline-block;
+  background: #D4AF37;
+  color: #FFFFFF;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 1rem 2rem;
+  border-radius: 0;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 8px 16px rgba(212, 175, 55, 0.25);
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+.contacts__btn:hover {
+  background: #0F4037;
+  box-shadow: 0 10px 20px rgba(15, 64, 55, 0.25);
+  transform: translateY(-2px);
+}
+@media (max-width: 768px) {
+  .contacts__btn {
+    align-self: center;
+  }
+}
+.contacts__map {
+  flex: 1;
+  height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+.contacts__map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }
 
-/* ============================
-   FOOTER — Margo Look
-   ============================ */
 .footer {
-  background: #0F4037;
-  color: #F4F2F2;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #0f4037;
+  color: #fff;
+  padding: 4rem 1rem 2rem;
   text-align: center;
-  padding: 2rem 1rem;
+  font-family: "Nunito", sans-serif;
+  position: relative;
+  overflow: hidden;
+  /* мягкое свечение */
+}
+.footer__inner {
+  width: min(100% - 2rem, 1100px);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+}
+.footer__logo {
   font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 1.8rem;
+  letter-spacing: 0.06em;
+  color: #D4AF37;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer__logo:hover {
+  color: rgb(221.024691358, 191.7901234568, 96.975308642);
+}
+.footer__slogan {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.3rem;
+  letter-spacing: 0.04em;
 }
 .footer__social {
   display: flex;
   justify-content: center;
+  gap: 1.2rem;
+}
+.footer__social .footer__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.footer__social .footer__icon:hover {
+  background: #D4AF37;
+  transform: translateY(-4px);
+}
+.footer__social .footer__icon img {
+  width: 20px;
+  height: 20px;
+  filter: invert(100%);
+}
+.footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
 }
-.footer__social a {
-  display: inline-block;
-  width: 34px;
-  height: 34px;
-  transition: transform 0.3s ease;
+.footer__nav a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
 }
-.footer__social a:hover {
-  transform: scale(1.1);
-}
-.footer__social a img {
-  width: 100%;
-  height: auto;
-  filter: invert(100%); /* если иконки чёрные — превращает в белые */
+.footer__nav a:hover {
+  color: #D4AF37;
 }
 .footer__copy {
-  font-size: 0.875rem;
-  color: #D5CDCB;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 1rem;
   letter-spacing: 0.02em;
+}
+.footer::after {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+  transform: translateX(-50%);
+  filter: blur(120px);
+  pointer-events: none;
 }
 
 /* ============================
