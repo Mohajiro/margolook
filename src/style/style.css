@@ -1009,6 +1009,7 @@ body {
   text-align: center;
   margin-bottom: 3rem;
   position: relative;
+  color: red;
 }
 .full-gallery__title::after {
   content: "";
@@ -1100,5 +1101,75 @@ body {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* ==== Общий контейнер ==== */
+.about-sections {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+/* ==== ОБЩИЙ БЛОК СЕКЦИИ ==== */
+.about-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  /* ==== текст ==== */
+  /* ==== изображение ==== */
+}
+@media (min-width: 768px) {
+  .about-section {
+    flex-direction: row;
+    gap: 4rem;
+  }
+}
+.about-section__content {
+  flex: 1;
+}
+.about-section__content h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 2.5vw + 1rem, 2.6rem);
+  color: #0F4037;
+  margin-bottom: 1rem;
+}
+.about-section__content p {
+  font-family: "Nunito", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #302D30;
+  margin-bottom: 1rem;
+}
+.about-section__image {
+  flex: 1;
+  max-width: 550px;
+  overflow: hidden;
+  border-radius: 0 !important;
+}
+.about-section__image img {
+  width: 100%;
+  height: auto; /* 🔥 адаптивно */
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  transform: none;
+  transition: transform 0.5s ease;
+}
+@media (hover: hover) {
+  .about-section__image:hover img {
+    transform: scale(1.05);
+  }
+}
+
+/* ==== Реверсивный блок ==== */
+@media (min-width: 768px) {
+  .about-section--reverse {
+    flex-direction: row-reverse;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,75 @@
+@import 'variables';
+
+/* ==== Общий контейнер ==== */
+.about-sections {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+/* ==== ОБЩИЙ БЛОК СЕКЦИИ ==== */
+.about-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+
+  @media (min-width: $breakpoint-md) {
+    flex-direction: row;
+    gap: 4rem;
+  }
+
+  /* ==== текст ==== */
+  &__content {
+    flex: 1;
+  }
+
+  &__content h2 {
+    font-family: $font-title;
+    font-weight: 800;
+    font-size: clamp(2rem, 2.5vw + 1rem, 2.6rem);
+    color: $color-emerald;
+    margin-bottom: 1rem;
+  }
+
+  &__content p {
+    font-family: $font-text;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: $color-dark;
+    margin-bottom: 1rem;
+  }
+
+  /* ==== изображение ==== */
+  &__image {
+    flex: 1;
+    max-width: 550px;
+    overflow: hidden;
+    border-radius: 0 !important;
+  }
+
+  &__image img {
+    width: 100%;
+    height: auto;   /* 🔥 адаптивно */
+    object-fit: cover;
+    display: block;
+    transform: none;
+    transition: transform .5s ease;
+  }
+
+  @media (hover: hover) {
+    &__image:hover img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* ==== Реверсивный блок ==== */
+.about-section--reverse {
+  @media (min-width: $breakpoint-md) {
+    flex-direction: row-reverse;
+  }
+}
